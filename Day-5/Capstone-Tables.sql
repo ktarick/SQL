@@ -113,8 +113,10 @@ go
 select * from RequestLines;
 go
 */
+
 select r.Description, r.Status, CONCAT(u.Firstname, ' ', u.Lastname) as 'Full Name',
-	 v.Name as 'Vendors Name', p.Name as 'Product', rl.Quantity, format(p.Price, 'c') as Price, format(rl.Quantity * p.Price, 'c') as 'Line Total'
+	 v.Name as 'Vendors Name', p.Name as 'Product', rl.Quantity, 
+	 format(p.Price, 'c') as Price, format(rl.Quantity * p.Price, 'c') as 'Line Total'
 from requests r
 join users u
 	on r.usersid = u.id
@@ -124,3 +126,4 @@ join Products p
 	on rl.ProductsId = p.Id
 join Vendors v
 	on p.VendorsId = v.Id	
+go
